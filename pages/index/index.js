@@ -5,6 +5,7 @@ var arry = [];//动作纵坐标
 var arrz = [];//总做状态，标识按下到抬起的一个组合
 var canvasw = 0;//画布宽度
 var canvash = 0;//画布高度
+
 // pages/shouxieban/shouxieban.js
 Page({
   /**
@@ -118,15 +119,16 @@ Page({
         console.log(res.tempFilePath, 'canvas图片地址');
         // that.setData({ canvasimgsrc: res.tempFilePath })
         //code 比如上传操作
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-        })
-        wx.showToast({
-          title: '已经保存到相册',
-          icon: 'success',
-          duration: 1500//持续的时间
-
-        })
+        // wx.saveImageToPhotosAlbum({
+        //   filePath: res.tempFilePath,
+        // })
+        // wx.showToast({
+        //   title: '已经保存到相册',
+        //   icon: 'success',
+        //   duration: 1500//持续的时间
+        // })
+        var fs = wx.getFileSystemManager().readFileSync(res.tempFilePath, "base64")
+        console.log('fs',fs);
       },
       fail: function () {
         console.log("canvas不可以生成图片")
